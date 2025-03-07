@@ -1,0 +1,7 @@
+{
+  "root": [
+    "./src/db.ts",
+    "./src/index.ts"
+  ],
+  "version": "5.7.3"
+}
