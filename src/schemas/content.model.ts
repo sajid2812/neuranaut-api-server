@@ -20,7 +20,7 @@ const contentSchema = new Schema(
         ref: "Tag",
       },
     ],
-    userId: {
+    user: {
       type: Types.ObjectId,
       ref: "User",
       required: true,
