@@ -22,7 +22,7 @@ router.post("/", auth, async (req: Request, res: Response) => {
     });
     const { success, error } = requiredBody.safeParse(req.body);
     if (!success) {
-      res.status(400).json({ message: "Invalid input format", error: error });
+      res.status(400).json({ message: "Invalid input format.", error: error });
       return;
     }
     await Content.create({
@@ -33,9 +33,9 @@ router.post("/", auth, async (req: Request, res: Response) => {
       //@ts-ignore
       user: req.user._id,
     });
-    res.status(200).json({ message: "Content created successfully" });
+    res.status(200).json({ message: "Content created successfully." });
   } catch (e) {
-    res.status(400).json({ message: "Content creation failed" });
+    res.status(400).json({ message: "Content creation failed." });
   }
 });
 

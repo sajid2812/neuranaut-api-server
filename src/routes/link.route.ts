@@ -13,9 +13,9 @@ router.post("/", auth, async (req: Request, res: Response) => {
       //@ts-ignore
       user: req.user._id,
     });
-    res.status(200).json({ message: "Link created successfully" });
+    res.status(200).json({ message: "Link created successfully." });
   } catch (e) {
-    res.status(400).json({ message: "Link creation failed" });
+    res.status(400).json({ message: "Link creation failed." });
   }
 });
 

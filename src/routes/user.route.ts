@@ -17,7 +17,7 @@ router.post("/signup", async (req: Request, res: Response) => {
     });
     const { success, error } = requiredBody.safeParse(req.body);
     if (!success) {
-      res.status(400).json({ message: "Incorrect input format", error: error });
+      res.status(400).json({ message: "Incorrect input format.", error: error });
       return;
     }
     const hashedPassword = await bcrypt.hash(password, 5);
@@ -25,9 +25,9 @@ router.post("/signup", async (req: Request, res: Response) => {
       username: username,
       password: hashedPassword,
     });
-    res.status(200).json({ message: "Signup successfull" });
+    res.status(200).json({ message: "Signup successfull." });
   } catch (e) {
-    res.status(400).json({ message: "User already exists" });
+    res.status(400).json({ message: "User already exists." });
   }
 });
 
@@ -40,19 +40,19 @@ router.post("/login", async (req: Request, res: Response) => {
     });
     const { success, error } = requiredBody.safeParse(req.body);
     if (!success) {
-      res.status(400).json({ message: "Invalid input format", error: error });
+      res.status(400).json({ message: "Invalid input format.", error: error });
       return;
     }
     const user = await User.findOne({
       username: username,
     });
     if (!user) {
-      res.status(401).json({ message: "Invalid credentials" });
+      res.status(401).json({ message: "Invalid credentials." });
       return;
     }
     const passwordMatched = await bcrypt.compare(password, user.password);
     if (!passwordMatched) {
-      res.status(401).json({ message: "Invalid credentials" });
+      res.status(401).json({ message: "Invalid credentials." });
       return;
     }
     const token = jwt.sign(
@@ -63,7 +63,7 @@ router.post("/login", async (req: Request, res: Response) => {
     );
     res.status(200).json({ token });
   } catch (e) {
-    res.status(401).json({ message: "Invalid credentials" });
+    res.status(401).json({ message: "Invalid credentials." });
   }
 });
 

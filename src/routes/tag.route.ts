@@ -13,15 +13,15 @@ router.post("/", async (req, res) => {
     });
     const { success, error } = requiredBody.safeParse(req.body);
     if (!success) {
-      res.status(400).json({ message: "Invalid input format", error: error });
+      res.status(400).json({ message: "Invalid input format.", error: error });
       return;
     }
     await Tag.create({
       title: title,
     });
-    res.status(200).json({ message: "Tag created successfully" });
+    res.status(200).json({ message: "Tag created successfully." });
   } catch (e) {
-    res.status(400).json({ message: "Tag creation failed" });
+    res.status(400).json({ message: "Tag creation failed." });
   }
 });
 
