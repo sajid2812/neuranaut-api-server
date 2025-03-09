@@ -12,12 +12,20 @@ router.post("/signup", async (req: Request, res: Response) => {
   try {
     const { username, password } = req.body;
     const requiredBody = z.object({
-      username: z.string().min(3).max(30),
-      password: z.string().min(3).max(20),
+      username: z
+        .string()
+        .min(3, { message: "Username must be at least 3 characters long." })
+        .max(30, { message: "Username can't exceed 30 characters." }),
+      password: z
+        .string()
+        .min(3, { message: "Password must be at least 3 characters long." })
+        .max(20, { message: "Password can't exceed 20 characters." }),
     });
     const { success, error } = requiredBody.safeParse(req.body);
     if (!success) {
-      res.status(400).json({ message: "Incorrect input format.", error: error });
+      res
+        .status(400)
+        .json({ message: "Incorrect input format.", error: error });
       return;
     }
     const hashedPassword = await bcrypt.hash(password, 5);
@@ -35,8 +43,14 @@ router.post("/login", async (req: Request, res: Response) => {
   try {
     const { username, password } = req.body;
     const requiredBody = z.object({
-      username: z.string().min(3).max(30),
-      password: z.string().min(3).max(20),
+      username: z
+        .string()
+        .min(3, { message: "Username must be at least 3 characters long." })
+        .max(30, { message: "Username can't exceed 30 characters." }),
+      password: z
+        .string()
+        .min(3, { message: "Password must be at least 3 characters long." })
+        .max(20, { message: "Password can't exceed 20 characters." }),
     });
     const { success, error } = requiredBody.safeParse(req.body);
     if (!success) {

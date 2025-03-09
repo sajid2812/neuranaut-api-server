@@ -9,7 +9,10 @@ router.post("/", async (req, res) => {
   try {
     const { title } = req.body;
     const requiredBody = z.object({
-      title: z.string().min(3).max(20),
+      title: z
+        .string()
+        .min(3, { message: "Title must be at least 3 characters long." })
+        .max(20, { message: "Title can't exceed 20 characters." }),
     });
     const { success, error } = requiredBody.safeParse(req.body);
     if (!success) {
